@@ -1,0 +1,188 @@
+#chat-page {
+    width: 66.67%; /* Two-thirds of the screen width */
+    height: calc(100vh - 60px); /* Full height of the viewport */
+    position: absolute; /* Fixes the position of the chat page */
+    right: 0; /* Aligns the chat page to the right */
+    top: 60px; /* Aligns the chat page to the top */
+	margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+	font-family: 'Caslon', serif;
+    background-color: #f2f2f2; /* Background color */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow effect */
+}
+
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure the container fills the entire chat-page */
+    width: 100%; /* Ensure the container takes up full width */
+}
+
+.chat-header {
+    height: 60px; /* Fixed height for the header */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between profile picture and menu */
+    padding: 10px;
+    background-color: #003f4b; /* Darker theme color */
+    color: white;
+    width: 100%; /* Ensure it takes the full width of the chat container */
+    position: relative;
+}
+
+#chat-profile-picture {
+    background-image: url('https://via.placeholder.com/52');
+    background-size: cover;
+	margin-right: 60px;
+	border-radius: 10%;
+}
+
+#chat-title {
+    flex: 1;
+    font-size: 24px; /* Increased font size for character name */
+    font-weight: bold;
+    text-align: center; /* Center the character name */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Ensure it's perfectly centered */
+}
+
+.chat-window {
+    display: flex;
+    flex-direction: column; /* Align messages in a vertical column */
+    justify-content: flex-start; /* Aligns content to the top */
+    align-items: flex-start; /* Default for bot messages */
+    flex: 1; /* Fills the remaining space after header and input */
+    overflow-y: auto; /* Enable vertical scroll if necessary */
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+	scrollbar-width: thin;
+    scrollbar-color: #888 transparent; 
+}
+
+/* Custom scrollbar styles for WebKit browsers */
+.chat-window::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar track */
+}
+
+.chat-window::-webkit-scrollbar-track {
+    background: transparent; /* Hide the track background */
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Round the edges of the scrollbar thumb */
+}
+
+.chat-window::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb on hover */
+}
+
+/* Hide the arrows in WebKit browsers */
+.chat-window::-webkit-scrollbar-button {
+    display: none; /* Hide the arrows */
+}
+
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(154, 214, 213, 0.4);
+    gap: 0;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px 0 0 50px;
+    resize: none; /* Prevent manual resizing */
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    min-height: 50px; /* Minimum height */
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: inset 0 0 5px rgba(154, 214, 213, 0.4);
+}
+
+.chat-send-button {
+    padding: 20px;
+    border: none;
+    border-radius: 0 50px 50px 0;
+    background-color: #78b2ba;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(154, 214, 213, 0.4);
+}
+
+.chat-send-button:hover {
+    background-color: #145d6d;
+}
+
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    border-radius: 20px;
+}
+
+.message.user {
+    background-color: #78b2ba; /* Theme color for user messages */
+    align-self: flex-end; /* Aligns user messages to the right */
+    color: black;
+}
+
+.message.bot {
+    background-color: #d3d3d3; /* Grey color for bot messages */
+    align-self: flex-start; /* Aligns bot messages to the left */
+    color: black;
+}
+
+
+.menu-button {
+    margin-left: auto;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px; /* Increase size of the three dots */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.chat-menu {
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    background-color: #003f4b;
+    border-radius: 8px;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+.chat-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chat-menu li {
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.chat-menu li:hover {
+    background-color: #145d6d;
+}
