@@ -47,28 +47,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
         console.log('API URL:', apiUrl); // Log API URL
         console.log('Prompt Template:', promptTemplate); // Log prompt template
-        console.log('Input Object:', {
-            top_k: 50,
-            top_p: 0.9,
-            prompt: message,
-            temperature: 0.7,
-            max_new_tokens: 512,
-            prompt_template: promptTemplate
-        }); // Log input object
 
         fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ input: {
-                top_k: 50,
-                top_p: 0.9,
-                prompt: message,
-                temperature: 0.7,
-                max_new_tokens: 512,
-                prompt_template: promptTemplate
-            } }),
+            body: JSON.stringify({
+    input: {
+        top_k: 50,
+        top_p: 0.95,
+        prompt: message,
+        max_tokens: 512,
+        temperature: 0.7,
+        system_prompt: promptTemplate,
+        length_penalty: 1,
+        max_new_tokens: 512,
+        stop_sequences: "<|end_of_text|>,<|eot_id|>",  // converted to a comma-separated string
+        prompt_template: "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+        presence_penalty: 0,
+        log_performance_metrics: false
+    }
+}),
         })
         .then(response => {
             console.log('Response Status:', response.status); // Log response status
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.error('Second Fetch Error:', error); // Log second fetch error
                         displayMessage('Error: ' + error.message, 'error');
                     });
-                }, 4000); // Adjust delay as needed
+                }, 5500); // Adjust delay as needed
             } else {
                 displayMessage('Error: ' + data.message, 'error');
             }
